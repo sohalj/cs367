@@ -1,0 +1,66 @@
+/*----------------------------------------------------------------------------*\
+1. Megan Dittamore, JP Sohal
+
+2.
+(REQUIRED)
+When there is only one user left in the game in our testing, sometimes things
+would get weird.  It would only happen if there were multiple players before,
+but then everyone left but one person.  It won't accept that person's answers,
+and thinks they aren't inputting anything.
+If a person tries to connect midround, they will be added, and their name will
+count as an answer to that question.  This is because we couldn't figure out
+how to separate these fields, and all of our checks were done after the name
+was verified.
+
+(NOT REQUIRED)
+Our code does not sort by descending order when displaying the leader board,
+because it was not required.  If we had more time we would go back and make the
+leader board sort by descending order.
+The game also never ends.  This is because the protocol never has an end case.
+The protocol never specifies what to do when there's no answer, so we leave
+their score as it was before, not deducting or adding points for skipping a
+round (if they skip three in a row they will be kicked though).
+If a participant leaves, their name will be left on the board until they are
+kicked for not answering enough times.
+If players leave and come back, then things become pretty confused as well.
+
+(WHAT WE TESTED SUCCESSFULLY)
+We know that our program will verify answers correctly despite white space and
+capitilization.
+Our program verifies unique usernames, denies ones that are already in play,
+and shuts others out when the game is full.
+Our program will only run if there's at least one observer and one participant,
+and will stop running once below that threshold.  It will then start running
+again when enough people join.
+Our leader board is displaying correctly (except the sorting by score, as
+mentioned above).  It follows the format laid out in the protocol, and shows
+that points have been calculated correctly.
+Our timers work, as in the rounds last 15 seconds, and then there is a five
+second break after before the next round begins.
+Players who fail to answer for three rounds are successfully kicked from the
+game.
+
+3. We tested our code by running it and changing the answers we gave to make
+sure it was doing everything right.  For example, when we were trying to make
+it ignore white space, we would run our server, participant, and client, and
+then type in answers that included a lot of white space (spaces in the middle
+of words), and see if the server caught it.  We would also have an additional
+participant open and would check a control (exactly right answer) to see how
+things differed.  We also put in print statements while testing to see what
+was going on within the server.
+We went through the protocol and tested that each aspect of it worked, one at
+a time.
+
+4. The most challenging aspect was probably trying to figure out the protocol.
+We often felt like we were trying to get something from nothing, since the
+protocol was so vague.
+The other part that was challenging, but actually within our code, was getting
+the time balance right.  It was very challenging to figure out how to run the
+program using two varible times.  We ended up using two different sleep calls,
+but before that we tried having two alarms, one alarm one sleep, and other
+variations within there to try and make it work, and we could only figure out
+how exactly to do it when we got help.
+
+5. A game that ends would be nice, maybe when it reaches some point threshold,
+or when a player gets a certain number of answers correct, or my least favorite
+option, a timed game.

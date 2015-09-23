@@ -1,0 +1,10 @@
+1. JP Sohal
+
+2.As far as i know i believe all the aspects of my client and server are working.
+
+3.I did alot of testing my code was working by just playing multiple games with my self. While i played i had alot of print statements that would print out the actual move location and not jus the column the user decided. I tested multiple variatons of moves a player could make and make sure it caught the invalid ones. One bug that came up was when a user would enter the move A67 or any two digit number where the first digit was a valid column, the program would interpet it as a valid move since the 6 was a valid column. I had alot of print statements in the check for win function. This helped me know that it was working by displaying all the common chips to the players move and their respective position. I also made sure to check my check for tie function was working. I am really glad i did too because i thought i was done with the assignment but i had found a bug in my check for winner function while testing my tie function. Which led to the most challenging part.
+
+4. So the most challening part for me was the checking for a winner function. This is because the game state is just a 42 bit character array. So the way my algorithms were set up  to check for winner would lead to invalid wins. This was becuase when i reached the two edge columns (0 and 6) it would go to the next row or column. For example checking the row infront of a move made at position 5 would include 6 and 7 if they were the right player symbol. Which is obviously wrong since 7 is in the next row. Or if i made a move at position 19 it would check 27 which is diagonal to 27 but it would also check 35 which is not diagonal to 27. Luckly i caught this before i turned it in and fixed it. 
+
+
+5.One variant which would be kind of cool would be giving players the chance to be able to popout a token, but the token you want to popout token doesnt have to be on the bottom of the board. Another which would be kind of cool would be makign a connect 5 game. I think you would need a bigger board more than likley however. 

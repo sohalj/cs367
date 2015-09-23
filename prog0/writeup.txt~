@@ -1,0 +1,13 @@
+﻿Program 0 Write-Up
+CS367W15
+
+1.	JP Sohal
+	Dana Sanders
+
+2. 	Everything in our program appears to satisfy all of the requirements for the assignment.  Our server holds a character (answer variable) that the client is required to guess by repeatedly sending an integer guess to the server and receiving a character in response.  The client then analyzes the character response from the server and determines if the guess is warmer or colder to the server's number.
+
+3. 	We tested if the code was working by first making sure the server and client were communicating properly through a variety of print statements and manipulating the buffer.  After we confirmed the communication was correct we tested the logic for the guessing game by giving the server a larger amount of guesses that were all at different distances from the answer and the previous guess.  Once these were working we spent the last bit of our time making sure we were meeting everything in the assignment (for example, having the client send an integer to the server rather than a character).
+
+4.	The most challenging aspect of the assignment was making sure we placed our code in the correct positions around our loops.  We also had a few challenges converting from integers to characters and making sure the client was analyzing the response correctly.
+
+5.	A variant or extension of this assignment that would be interesting to try would be to have the client work by itself to find the correct answer rather than having the user have to manually put in another guess in order to find the answer.	

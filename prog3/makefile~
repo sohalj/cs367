@@ -1,0 +1,10 @@
+# Program 2 Makefile
+# Megan Dittamore
+
+CC = gcc
+OBJECTS = prog3_server.o prog3_observer.o prog3_participant.o
+
+all: prog3_server.c
+	gcc -g -o -C prog3_server prog3_server.c
+	gcc -g -o -C prog3_observer prog3_observer.c
+	gcc -g -o -C prog3_participant prog3_participant.c

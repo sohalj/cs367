@@ -1,0 +1,61 @@
+The program will be split into three parts. A server, a participant and an observer.
+
+
+Observer
+- An observer program should take two arguments. 
+	1) The first is the IP address of the server 
+	2) The second is which socket the server is on.
+- The observer will attempt to connect to the server and receive messages that are then displayed.
+
+Participant
+
+- A participant should take two arguments.
+	1) The first is the IP address of the server 
+	2) The second is which port the server is on
+- When started the participant prompts the user for a username that is between 1 and 16 ascii characters that cannot be a duplicate of a currently used username.
+- The participant then sends that username to the server which validates it.
+- The participant then receives the character 'V' if the name is valid, an 'I' if it is invalid, or an 'F' if the server is full.
+- If the server is full the client should notify the user and close itself.
+- If the username is invalid the participant should re-prompt for a new username and send the new username to the server which again attempts validation.
+- Once a valid username is established the participant should simply read input from the user one line at a time and send answers no larger than 1024 characters to the server.
+
+Server
+
+- The server should take two arguments. 
+	1) The first is the socket for participants 
+	2) The second is the socket for observers.
+- The server should be able to handle up to 8 participants and 16 observers.
+	- These values should be #define'd as MAX_PARTICIPANT and MAX_OBSERVERS and not encoded as magic numbers
+- The server does not send questions until there is at least one observer and one participant.
+- An observer should be able to connect at anytime and immediately begin receiving all messages sent out to observers.
+- When a participant connects the username should be validated. If it is valid the server should send a 'V'. If it is invalid the server should send an 'I'.
+- If a participant connects between rounds and there are slots for more participants they should be immediately added to the active participants.
+- If a participant connects and there are no more slots for more participants they should be sent the character 'F'.
+- If a participant connects and there are slots available but it is during a round they should be added to the active participants after the round is over.
+- Once started the server begins sending observers the topic, point total and question. This is followed by a period of 15 seconds where participants can send in answers.
+- The server should accept each players first answer and award points to all correct answers and deduct points for incorrect answers.
+- Each player starts with 2000 points. 
+- A correct answer increases a player's points by a variable amount of points (dictated by the question).
+- An incorrect answer is worth negative half of the points dictated by the question. 
+- Players who fail to answer for three consecutive rounds will be kicked from the game.
+- Answers should be no longer than 1024 characters 
+- Answers are deemed to be correct if they match the correct answer, ignoring case and white-space.
+- Each round is one question (15 seconds) long.
+- After each round the server should send a message to all observers showing who answered correctly, who answered incorrectly and who was kicked followed by the correct answer as well a leader board showing the current point totals of active players in descending order of points.
+- The messages indicating whether a player answered correctly should all be sent in a single line with each message separated by a newline character and the entire message ending with a newline character but no null terminator. 
+- The message indicating the correct answer should be terminated with a newline but not a null terminator.
+- The leader board should be sent as a single message that is formatted as follows:
+
+27 '-' characters followed by a newline.
+'|' 5 spaces "Player" 5 spaces '|' a space "Score" a space '|' and a newline.
+27 '-' characters followed by a newline.
+'|' a username padded to take up 16 characters '|' the score for the username padded to take 7 characters '|' and a newline.
+Repeat 4 for each username, sorted in descending order of score.
+
+- The server should then wait 5 seconds and add any new participants.
+- The server should then send a message to the observers indicating who has joined.
+- The server should clear all data from the buffers of active participants.
+- The server should then begin the next round.
+- Questions will be sent as a single line of text that ends with a newline but not including a null terminator.
+- Answers will always be short answer format that ends with a newline but not a null terminator. 
+

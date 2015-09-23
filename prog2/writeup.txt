@@ -1,0 +1,25 @@
+1. J.P. Sohal
+2. I believe that my clients and server code are working.
+3.I tested my program by obviously connecting to the server and sending messages. 
+  I also connected my clients to other peoplse servers and vice versa. 
+  I tested the adding a newline by sending messages that were larger than 1024
+  I tested the reaching the limit by reaching it and seeing if it closed.
+4. The most challening part was definatley understandign select and all its macros. 
+   It took me a while to understand that i could put all the observer and partcipants 
+   clients in the same fdset. Also a tough part for me was when to add clients to the 
+   set using FD_SET. I was trying to do it right after i stored the sd but i would have 
+   problems with messages. So instead i just decided to clear the set at the beggining of
+   each loop and then adding the sd to the set by looping through the arrays i had for 
+   each client. It was also reassuring to me cause i know the fdset would be most up to date.
+   Another challenging part to me was getting garbage being sent with my messages. I thought 
+   i figured it out by looping trhough the message and then addding a null after the newline.
+   But this didnt work once the message became larger than 1024 bytes. I was also sending 
+   the entire length of the buffer to the observer. So its length would become the length of the 
+   longest message sent. An luckly you told us in class that this was agaisnt the protocol.
+   An i thought of ways to handle this which i implemented and kind of work. Then i figured 
+   i could just send the size of the bytes read instead of the entire arrays. An this worked for me.
+
+5.A variant of this assignment that would be cool, would obviously be having only one client
+ instead of two. It would be able to send messages and display messages more like a traditonal chat.
+ 
+  
